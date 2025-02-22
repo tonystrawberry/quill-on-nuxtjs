@@ -1,21 +1,72 @@
 <template>
   <div class="flex bg-gray-100 overflow-auto">
-    <div class="a4-landscape bg-white border flex flex-col my-8 ml-8 mr-4">
-      <!-- Header -->
-      <MaisokuHeader class="w-full flex-shrink-0" />
-
-      <!-- Body (Main Content) -->
-      <MaisokuBody class="w-full flex-grow" />
-
-      <!-- Footer -->
-      <MaisokuFooter class="w-full flex-shrink-0" />
+    <div class="a4-landscape bg-white border border-gray-300 flex flex-col my-8 ml-8 mr-4">
+      <MaisokuHeader class="w-full flex-shrink-0" @onSelect="resetCurrentContent" />
+      <MaisokuBody class="w-full flex-grow" @onSelect="resetCurrentContent" />
+      <MaisokuFooter class="w-full flex-shrink-0" @onSelect="resetCurrentContent" />
     </div>
 
-    <div class="ml-4 bg-white my-8 mr-8 ml-4 grow flex flex-col">
-      <MaisokuQuillEditor />
+
+    <div class="ml-4 bg-white my-8 mr-8 ml-4 grow flex flex-col border border-gray-300">
+      <MaisokuQuillEditor
+        v-if="maisokuStore.selectedSection != null"
+        :content="currentContent"
+        @onTextChange="setSectionHtml"/>
+      <div v-else class="flex-grow flex items-center justify-center">
+        <p class="text-gray-500">Select a section to edit</p>
+      </div>
     </div>
   </div>
 </template>
+
+<script>
+import { useMaisokuStore } from '@/stores/maisoku';
+
+export default defineComponent({
+  setup() {
+    const maisokuStore = useMaisokuStore();
+
+    return {
+      maisokuStore,
+    };
+  },
+  data() {
+    return {
+      currentContent: '',
+    };
+  },
+  methods: {
+    setSectionHtml(html) {
+      switch(this.maisokuStore.selectedSection) {
+        case 'Header':
+          this.maisokuStore.setHeaderHtml(html);
+          break;
+        case 'Body':
+          this.maisokuStore.setBodyHtml(html);
+          break;
+        case 'Footer':
+          this.maisokuStore.setFooterHtml(html);
+          break;
+      }
+    },
+    resetCurrentContent() {
+      switch(this.maisokuStore.selectedSection) {
+        case 'Header':
+          this.currentContent = this.maisokuStore.headerHtml;
+          break;
+        case 'Body':
+          this.currentContent = this.maisokuStore.bodyHtml;
+          break;
+        case 'Footer':
+          this.currentContent = this.maisokuStore.footerHtml;
+          break;
+      }
+    },
+  },
+});
+
+</script>
+
 
 <style scoped>
 /* Smaller on-screen A4 landscape */

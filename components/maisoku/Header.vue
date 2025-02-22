@@ -1,10 +1,21 @@
 <template>
   <div class="relative w-full py-4 border-b border-gray-300 flex justify-between items-center h-16">
-
-    <MaisokuEditButton />
+    <div v-html="maisokuStore.headerHtml" />
+    <MaisokuEditButton @click="selectSection" />
   </div>
 </template>
 
 <script setup>
-// No additional logic needed for this header
+import { defineEmits } from "vue";
+import { useMaisokuStore } from '@/stores/maisoku';
+
+const emit = defineEmits(['onSelect']);
+
+const maisokuStore = useMaisokuStore();
+
+const selectSection = () => {
+  maisokuStore.setSelectedSection('Header');
+  emit('onSelect');
+}
 </script>
+

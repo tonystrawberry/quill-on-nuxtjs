@@ -6,7 +6,6 @@
       <MaisokuFooter class="w-full flex-shrink-0" @onSelect="resetCurrentContent" />
     </div>
 
-
     <div class="ml-4 bg-white my-8 mr-8 ml-4 grow flex flex-col border border-gray-300">
       <MaisokuQuillEditor
         v-if="maisokuStore.selectedSection != null"

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full py-4 border-b border-gray-300 flex justify-between items-center h-16">
+  <div class="relative w-full border-b border-gray-300 flex justify-between items-center h-16">
     <div v-html="maisokuStore.headerHtml" />
     <MaisokuEditButton @click="selectSection" />
   </div>

@@ -16,14 +16,7 @@ onMounted(async () => {
       await import("quill")).default;
 
       quill = new Quill("#editor", {
-        theme: "snow",
-        modules: {
-          toolbar: {
-            container: [
-              [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            ],
-          },
-        },
+        theme: "snow"
       });
 
       quill.on('text-change', () => {

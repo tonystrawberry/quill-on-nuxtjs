@@ -1,5 +1,5 @@
 <template>
-  <main class="relative flex-1 py-6">
+  <main class="relative flex-1 flex justify-between items-center">
     <div v-html="maisokuStore.bodyHtml" />
     <MaisokuEditButton @click="selectSection" />
   </main>

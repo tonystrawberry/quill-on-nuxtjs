@@ -1,6 +1,6 @@
 <template>
   <div class="flex bg-gray-100 overflow-auto">
-    <div class="a4-landscape bg-white border border-gray-300 flex flex-col my-8 ml-8 mr-4">
+    <div class="a4-landscape bg-white border border-gray-300 flex flex-col my-8 ml-8 mr-4 grow-0 shrink-0 basis-[1000px]">
       <MaisokuHeader class="w-full flex-shrink-0" @onSelect="resetCurrentContent" />
       <MaisokuBody class="w-full flex-grow" @onSelect="resetCurrentContent" />
       <MaisokuFooter class="w-full flex-shrink-0" @onSelect="resetCurrentContent" />
@@ -9,7 +9,7 @@
     <div class="ml-4 bg-white my-8 mr-8 ml-4 grow flex flex-col border border-gray-300">
       <MaisokuQuillEditor
         v-if="maisokuStore.selectedSection != null"
-        @onTextChange="setSectionHtml"
+        @onEditorChange="setSectionHtml"
         ref="quillEditor"
         />
       <div v-else class="flex-grow flex items-center justify-center">

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full border-b border-gray-300 flex justify-between items-center h-16">
+  <div class="relative w-full border-b border-gray-300 flex justify-between items-center h-16 overflow-hidden">
     <div v-html="maisokuStore.headerHtml" />
     <MaisokuEditButton @click="selectSection" />
   </div>
@@ -8,6 +8,8 @@
 <script setup>
 import { defineEmits } from "vue";
 import { useMaisokuStore } from '@/stores/maisoku';
+
+import 'quill-table-better/dist/quill-table-better.css'
 
 const emit = defineEmits(['onSelect']);
 
@@ -18,4 +20,10 @@ const selectSection = () => {
   emit('onSelect');
 }
 </script>
+
+<style scoped>
+.ql-editor {
+  all: revert;
+}
+</style>
 

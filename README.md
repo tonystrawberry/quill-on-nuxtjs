@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://quill-on-nuxtjs.vercel.app/editor">
-    <img src="docs/logo.png" width="60" />
+    <img src="docs/logo.webp" width="60" />
   </a>
 </p>
 <h1 align="center">

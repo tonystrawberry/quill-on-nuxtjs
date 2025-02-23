@@ -1,5 +1,5 @@
 <template>
-  <footer class="relative w-full py-3 border-t border-gray-300 text-center text-sm text-gray-500 h-16">
+  <footer class="relative w-full flex items-center h-16 border-t border-gray-300">
     <div v-html="maisokuStore.footerHtml" />
     <MaisokuEditButton @click="selectSection" />
   </footer>

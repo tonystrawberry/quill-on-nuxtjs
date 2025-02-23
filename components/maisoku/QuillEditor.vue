@@ -3,17 +3,10 @@
 </template>
 
 <script setup>
-import { onMounted, defineEmits, defineProps } from "vue";
+import { onMounted, defineEmits, defineProps, defineExpose } from "vue";
 import "quill/dist/quill.snow.css";
 
 const emit = defineEmits(['onTextChange']);
-
-const props = defineProps({
-  content: {
-    type: String,
-    default: '',
-  },
-});
 
 let quill = null;
 
@@ -39,10 +32,12 @@ onMounted(async () => {
   }
 });
 
-// Watch for changes in the content prop and update the editor
-watch(() => props.content, (newContent) => {
-  if (quill) {
-    quill.root.innerHTML = newContent;
-  }
+const resetContent = (content) => {
+  quill.root.innerHTML = content
+};
+
+defineExpose({
+  resetContent,
 });
+
 </script>

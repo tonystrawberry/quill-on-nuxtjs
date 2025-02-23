@@ -10,8 +10,9 @@
     <div class="ml-4 bg-white my-8 mr-8 ml-4 grow flex flex-col border border-gray-300">
       <MaisokuQuillEditor
         v-if="maisokuStore.selectedSection != null"
-        :content="currentContent"
-        @onTextChange="setSectionHtml"/>
+        @onTextChange="setSectionHtml"
+        ref="quillEditor"
+        />
       <div v-else class="flex-grow flex items-center justify-center">
         <p class="text-gray-500">Select a section to edit</p>
       </div>
@@ -19,53 +20,44 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
 import { useMaisokuStore } from '@/stores/maisoku';
 
-export default defineComponent({
-  setup() {
-    const maisokuStore = useMaisokuStore();
+// Store and editor references
+const maisokuStore = useMaisokuStore();
+const quillEditor = ref(null);
 
-    return {
-      maisokuStore,
-    };
-  },
-  data() {
-    return {
-      currentContent: '',
-    };
-  },
-  methods: {
-    setSectionHtml(html) {
-      switch(this.maisokuStore.selectedSection) {
-        case 'Header':
-          this.maisokuStore.setHeaderHtml(html);
-          break;
-        case 'Body':
-          this.maisokuStore.setBodyHtml(html);
-          break;
-        case 'Footer':
-          this.maisokuStore.setFooterHtml(html);
-          break;
-      }
-    },
-    resetCurrentContent() {
-      switch(this.maisokuStore.selectedSection) {
-        case 'Header':
-          this.currentContent = this.maisokuStore.headerHtml;
-          break;
-        case 'Body':
-          this.currentContent = this.maisokuStore.bodyHtml;
-          break;
-        case 'Footer':
-          this.currentContent = this.maisokuStore.footerHtml;
-          break;
-      }
-    },
-  },
-});
+// Methods
+const setSectionHtml = (html) => {
+  switch (maisokuStore.selectedSection) {
+    case 'Header':
+      maisokuStore.setHeaderHtml(html);
+      break;
+    case 'Body':
+      maisokuStore.setBodyHtml(html);
+      break;
+    case 'Footer':
+      maisokuStore.setFooterHtml(html);
+      break;
+  }
+};
 
+const resetCurrentContent = () => {
+  switch (maisokuStore.selectedSection) {
+    case 'Header':
+      quillEditor.value?.resetContent(maisokuStore.headerHtml);
+      break;
+    case 'Body':
+      quillEditor.value?.resetContent(maisokuStore.bodyHtml);
+      break;
+    case 'Footer':
+      quillEditor.value?.resetContent(maisokuStore.footerHtml);
+      break;
+  }
+};
 </script>
+
 
 
 <style scoped>

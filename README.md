@@ -7,6 +7,11 @@
   A4 Pamphlet Editor
 </h1>
 
+https://github.com/user-attachments/assets/9b1fd2cf-1af0-4f85-ad39-e50340a9f121
+
+<iframe width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
 ## 🖥 Context
 
 I recently came across a A4 pamphlet generator feature inside one web application and wanted to try reverse engineer it. 

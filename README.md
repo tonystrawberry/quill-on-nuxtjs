@@ -1,75 +1,40 @@
-# Nuxt Minimal Starter
+<p align="center">
+  <a href="https://quill-on-nuxtjs.vercel.app/editor">
+    <img src="docs/logo.png" width="60" />
+  </a>
+</p>
+<h1 align="center">
+  A4 Pamphlet Editor
+</h1>
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 🖥 Context
 
-## Setup
+I recently came across a A4 pamphlet generator feature inside one web application and wanted to try reverse engineer it. 
+I haven't had the opportunity to use NuxtJS up to now so that was a nice and simple introductory project to get me started with it.
 
-Make sure to install dependencies:
+## 📚 Libraries
+- NuxtJS 3.15.4
+- Vue 3
+- QuillJS 2.0.3
 
-```bash
-# npm
+## 👨🏻‍💻 Local development
+
+1. Install the packages via `npm`.
+
+```
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+2. Run the server in your local environment.
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+```
+npm run dev -- -o
 ```
 
-## Production
+4.  Access the website via localhost.
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+```
+http://localhost:3000/editor
 ```
 
-Locally preview production build:
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

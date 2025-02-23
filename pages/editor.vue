@@ -1,14 +1,16 @@
 <template>
+  <EditorOptions />
+
   <div class="flex bg-gray-100 overflow-auto">
     <div class="a4-landscape bg-white border border-gray-300 flex flex-col my-8 ml-8 mr-4 grow-0 shrink-0 basis-[1000px]">
-      <MaisokuHeader class="w-full flex-shrink-0" @onSelect="resetCurrentContent" />
-      <MaisokuBody class="w-full flex-grow" @onSelect="resetCurrentContent" />
-      <MaisokuFooter class="w-full flex-shrink-0" @onSelect="resetCurrentContent" />
+      <EditorHeader class="w-full flex-shrink-0" @onSelect="resetCurrentContent" />
+      <EditorBody class="w-full flex-grow" @onSelect="resetCurrentContent" />
+      <EditorFooter class="w-full flex-shrink-0" @onSelect="resetCurrentContent" />
     </div>
 
     <div class="ml-4 bg-white my-8 mr-8 ml-4 grow flex flex-col border border-gray-300">
-      <MaisokuQuillEditor
-        v-if="maisokuStore.selectedSection != null"
+      <EditorQuillEditor
+        v-if="editorStore.selectedSection != null"
         @onEditorChange="setSectionHtml"
         ref="quillEditor"
         />
@@ -21,37 +23,37 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useMaisokuStore } from '@/stores/maisoku';
+import { useEditorStore } from '@/stores/editor';
 
 // Store and editor references
-const maisokuStore = useMaisokuStore();
+const editorStore = useEditorStore();
 const quillEditor = ref(null);
 
 // Methods
 const setSectionHtml = (html) => {
-  switch (maisokuStore.selectedSection) {
+  switch (editorStore.selectedSection) {
     case 'Header':
-      maisokuStore.setHeaderHtml(html);
+      editorStore.setHeaderHtml(html);
       break;
     case 'Body':
-      maisokuStore.setBodyHtml(html);
+      editorStore.setBodyHtml(html);
       break;
     case 'Footer':
-      maisokuStore.setFooterHtml(html);
+      editorStore.setFooterHtml(html);
       break;
   }
 };
 
 const resetCurrentContent = () => {
-  switch (maisokuStore.selectedSection) {
+  switch (editorStore.selectedSection) {
     case 'Header':
-      quillEditor.value?.resetContent(maisokuStore.headerHtml);
+      quillEditor.value?.resetContent(editorStore.headerHtml);
       break;
     case 'Body':
-      quillEditor.value?.resetContent(maisokuStore.bodyHtml);
+      quillEditor.value?.resetContent(editorStore.bodyHtml);
       break;
     case 'Footer':
-      quillEditor.value?.resetContent(maisokuStore.footerHtml);
+      quillEditor.value?.resetContent(editorStore.footerHtml);
       break;
   }
 };

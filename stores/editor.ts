@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
 
-export const useMaisokuStore = defineStore('maisokuStore', {
+export const useEditorStore = defineStore('editorStore', {
   state: () => ({
     headerHtml: '',
     bodyHtml: '',
     footerHtml: '',
-    selectedSection: null as MaisokuSectionType
+    selectedSection: null as EditorSectionType,
+    showEditIcon: true
   }),
   actions: {
     setHeaderHtml(html: string) {
@@ -17,8 +18,11 @@ export const useMaisokuStore = defineStore('maisokuStore', {
     setFooterHtml(html: string) {
       this.footerHtml = html
     },
-    setSelectedSection(selectedSection: MaisokuSectionType) {
+    setSelectedSection(selectedSection: EditorSectionType) {
       this.selectedSection = selectedSection
     },
+    setShowEditIcon(showEditIcon: boolean) {
+      this.showEditIcon = showEditIcon
+    }
   }
 })

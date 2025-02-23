@@ -1,22 +1,22 @@
 <template>
   <div class="relative w-full border-b border-gray-300 flex justify-between items-center h-16 overflow-hidden">
-    <div v-html="maisokuStore.headerHtml" />
-    <MaisokuEditButton @click="selectSection" />
+    <div v-html="editorStore.headerHtml" />
+    <EditorEditButton v-if="editorStore.showEditButton" @click="selectSection" />
   </div>
 </template>
 
 <script setup>
 import { defineEmits } from "vue";
-import { useMaisokuStore } from '@/stores/maisoku';
+import { useEditorStore } from '@/stores/editor';
 
 import 'quill-table-better/dist/quill-table-better.css'
 
 const emit = defineEmits(['onSelect']);
 
-const maisokuStore = useMaisokuStore();
+const editorStore = useEditorStore();
 
 const selectSection = () => {
-  maisokuStore.setSelectedSection('Header');
+  editorStore.setSelectedSection('Header');
   emit('onSelect');
 }
 </script>
